@@ -1,0 +1,12 @@
+{
+    "id": "auth-scouting",
+    "name": "Scouting Sign-In",
+    "description": "Integrating Scouting Nederland Sign-In (OpenID 2.0).",
+    "keywords": [
+    ],
+    "version": "1.0.0",
+    "homepage": "https://github.com/scoutingridderfulco/auth-scouting",
+    "humhub": {
+        "minVersion": "1.6"
+    }
+}
