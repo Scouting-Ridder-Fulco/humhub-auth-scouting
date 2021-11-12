@@ -30,9 +30,10 @@ class ScoutingAuth extends OpenId implements ApprovalBypass
     protected function defaultViewOptions()
     {
         return [
+            'title' => 'Login met Scouting Nederland',
             'popupWidth' => 860,
             'popupHeight' => 480,
-            'cssIcon' => 'fa fa-google',
+            'cssIcon' => 'icn-snl',
             'buttonBackgroundColor' => '#e0492f',
         ];
     }
@@ -59,7 +60,9 @@ class ScoutingAuth extends OpenId implements ApprovalBypass
                 return substr($attributes['namePerson'], strpos($attributes['namePerson'], " ") + 1);
             },
             'title' => 'tagline',
-            'email' => 'contact/email',
+            'email' => function ($attributes) {
+                return $attributes['contact/email'];
+            },
         ];
     }
 
