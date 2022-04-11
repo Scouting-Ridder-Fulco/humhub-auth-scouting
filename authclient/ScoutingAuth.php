@@ -68,6 +68,9 @@ class ScoutingAuth extends OpenId implements ApprovalBypass
                 return substr($attributes['namePerson'], strpos($attributes['namePerson'], " ") + 1);
             },
             'title' => 'tagline',
+            'birthday' => 'birthDate',
+            'time_zone' => 'pref/timezone',
+            'language' => 'pref/language',
             'email' => function ($attributes) {
                 return $attributes['contact/email'];
             },
