@@ -3,13 +3,14 @@
 namespace ridderfulco\auth\scouting\authclient;
 
 use humhub\modules\user\authclient\interfaces\ApprovalBypass;
+use humhub\modules\user\authclient\interfaces\SyncAttributes;
 use yii\authclient\OpenId;
 use Yii;
 
 /**
  * OpenId allows authentication via OpenId 2.0.
  */
-class ScoutingAuth extends OpenId implements ApprovalBypass
+class ScoutingAuth extends OpenId implements ApprovalBypass, SyncAttributes
 {
 
     public $authUrl = 'https://login.scouting.nl/provider/';
@@ -24,6 +25,10 @@ class ScoutingAuth extends OpenId implements ApprovalBypass
         'birthDate', 'person/gender', 'contact/postalCode/home', 'contact/country/home', 'pref/language', 'pref/timezone'
     ];
 
+    public function getSyncAttributes(): array
+    {
+        return ['firstname', 'lastname', 'birthday', 'email', 'lidnummer'];
+    }
     // public $data = [];
 
     public function getTitle(): string
@@ -67,10 +72,11 @@ class ScoutingAuth extends OpenId implements ApprovalBypass
 
                 return substr($attributes['namePerson'], strpos($attributes['namePerson'], " ") + 1);
             },
-            'title' => 'tagline',
             'birthday' => 'birthDate',
-            'time_zone' => 'pref/timezone',
             'language' => 'pref/language',
+
+            'lidnummer' => 'contact/postalCode/home',
+
             'email' => function ($attributes) {
                 return $attributes['contact/email'];
             },
