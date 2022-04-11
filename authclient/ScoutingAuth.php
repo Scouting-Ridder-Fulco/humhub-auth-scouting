@@ -24,16 +24,24 @@ class ScoutingAuth extends OpenId implements ApprovalBypass
         'birthDate', 'person/gender', 'contact/postalCode/home', 'contact/country/home', 'pref/language', 'pref/timezone'
     ];
 
+    // public $data = [];
+
+    public function getTitle(): string
+    {
+        $snlIcon = Yii::$app->getModule('auth-scouting')->getPublishedUrl('/snl_icon.png');
+        return "<img class='icn-snl' src='$snlIcon'/>Scouting Nederland";
+    }
+
     /**
      * @inheritdoc
      */
     protected function defaultViewOptions()
     {
         return [
-            'title' => 'Login met Scouting Nederland',
+            'class' => 'Login met Scouting Nederland',
             'popupWidth' => 860,
             'popupHeight' => 480,
-            'cssIcon' => 'icn-snl',
+            'cssIcon' => '',
             'buttonBackgroundColor' => '#e0492f',
         ];
     }
