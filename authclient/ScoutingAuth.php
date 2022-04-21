@@ -27,14 +27,13 @@ class ScoutingAuth extends OpenId implements ApprovalBypass, SyncAttributes
 
     public function getSyncAttributes(): array
     {
-        return ['firstname', 'lastname', 'birthday', 'email', 'lidnummer'];
+        return ['firstname', 'lastname', 'email', 'lidnummer'];
     }
     // public $data = [];
 
     public function getTitle(): string
     {
-        $snlIcon = Yii::$app->getModule('auth-scouting')->getPublishedUrl('/snl_icon.png');
-        return "<img class='icn-snl' src='$snlIcon'/>Scouting Nederland";
+        return "Login met Scouting Nederland";
     }
 
     /**
@@ -72,7 +71,7 @@ class ScoutingAuth extends OpenId implements ApprovalBypass, SyncAttributes
 
                 return substr($attributes['namePerson'], strpos($attributes['namePerson'], " ") + 1);
             },
-            'birthday' => 'birthDate',
+            // 'birthday' => 'birthDate',
             'language' => 'pref/language',
 
             'lidnummer' => 'contact/postalCode/home',
